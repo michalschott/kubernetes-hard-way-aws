@@ -65,20 +65,16 @@ export AMI_ID=`aws ec2 describe-images --owners 099720109477 --filters 'Name=nam
 aws ec2 create-key-pair --key-name kubernetes-the-hard-way --query 'KeyMaterial' --output text > ~/.ssh/kubernetes-the-hard-way.pem
 chmod 400 ~/.ssh/kubernetes-the-hard-way.pem
 ssh-add ~/.ssh/kubernetes-the-hard-way.pem >/dev/null
-export MASTER_ID=`aws ec2 run-instances --image-id ${AMI_ID} --count 1 --instance-type t2.medium --key-name kubernetes-the-hard-way --security-group-ids ${securityGroupId} --subnet-id ${subnetId} --private-ip-address 10.0.10.11 --associate-public-ip-address --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=controller}]' --query 'Instances[*].InstanceId' --output text`
+export MASTER_ID=`aws ec2 run-instances --image-id ${AMI_ID} --count 1 --instance-type t2.small --key-name kubernetes-the-hard-way --security-group-ids ${securityGroupId} --subnet-id ${subnetId} --private-ip-address 10.0.10.11 --associate-public-ip-address --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=controller}]' --query 'Instances[*].InstanceId' --output text`
 export MASTER_EXT_IP=`aws ec2 describe-instances --instance-ids ${MASTER_ID} --query 'Reservations[*].Instances[*].PublicIpAddress' --output text`
 ```
 
 ### Kubernetes Workers
 
-Worker instance requires a pod subnet allocation from the Kubernetes cluster CIDR range. The pod subnet allocation will be used to configure container networking in a later exercise.
-
-> The Kubernetes cluster CIDR range is defined by the Controller Manager's `--cluster-cidr` flag. In this tutorial the cluster CIDR range will be set to `10.200.0.0/16`, which supports 254 subnets.
-
 Create EC2 instance which will host the Kubernetes worker node:
 
 ```
-export WORKER_ID=`aws ec2 run-instances --image-id ${AMI_ID} --count 1 --instance-type t2.medium --key-name kubernetes-the-hard-way --security-group-ids ${securityGroupId} --subnet-id ${subnetId} --private-ip-address 10.0.10.21 --associate-public-ip-address --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=worker}]' --query 'Instances[*].InstanceId' --output text`
+export WORKER_ID=`aws ec2 run-instances --image-id ${AMI_ID} --count 1 --instance-type t2.small --key-name kubernetes-the-hard-way --security-group-ids ${securityGroupId} --subnet-id ${subnetId} --private-ip-address 10.0.10.21 --associate-public-ip-address --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=worker}]' --query 'Instances[*].InstanceId' --output text`
 export WORKER_EXT_IP=`aws ec2 describe-instances --instance-ids ${WORKER_ID} --query 'Reservations[*].Instances[*].PublicIpAddress' --output text`
 ```
 
