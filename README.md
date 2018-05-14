@@ -20,7 +20,7 @@ The target audience for this tutorial is someone planning to support a productio
 
 ## Cluster Details
 
-Kubernetes The Hard Way guides you through bootstrapping a highly available Kubernetes cluster with end-to-end encryption between components and RBAC authentication.
+Kubernetes The Hard Way guides you through bootstrapping a highly available Kubernetes cluster with end-to-end encryption between components and RBAC authentication. Because not everyone have publicly available domain, we will build GOSSIP-only cluster.
 
 * [Kubernetes](https://github.com/kubernetes/kubernetes) 1.9.0
 * [Docker Runtime](https://docker.com) 18.03.1-ce
