@@ -6,8 +6,6 @@ This tutorial leverages the AWS to streamline provisioning of the compute infras
 
 > The compute resources required for this tutorial exceed the AWS free tier.
 
-## Google Cloud Platform SDK
-
 ### Install the AWS CLI
 
 Follow the AWS CLI [documentation](https://aws.amazon.com/cli/) to install and configure the `aws` command line utility.

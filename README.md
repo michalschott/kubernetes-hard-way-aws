@@ -13,6 +13,7 @@ The main differences are:
 * AWS instead of GCP
 * docker instead of container-d
 * kubernetes 1.9.7 instead of 1.9.0
+* one master and one worker, no load balancers
 
 ## Target Audience
 
@@ -22,14 +23,14 @@ The target audience for this tutorial is someone planning to support a productio
 
 Kubernetes The Hard Way guides you through bootstrapping a highly available Kubernetes cluster with end-to-end encryption between components and RBAC authentication. Because not everyone have publicly available domain, we will build GOSSIP-only cluster.
 
-* [Kubernetes](https://github.com/kubernetes/kubernetes) 1.9.0
+* [Kubernetes](https://github.com/kubernetes/kubernetes) 1.9.7
 * [Docker Runtime](https://docker.com) 18.03.1-ce
 * [CNI Container Networking](https://github.com/containernetworking/cni) 0.6.0
-* [etcd](https://github.com/coreos/etcd) 3.2.11
+* [etcd](https://github.com/coreos/etcd) 3.3.4
 
 ## Labs
 
-This tutorial assumes you have access to the [Google Cloud Platform](https://cloud.google.com). While GCP is used for basic infrastructure requirements the lessons learned in this tutorial can be applied to other platforms.
+This tutorial assumes you have access to the [AWS Cloud](https://aws.amazon.com). While AWS is used for basic infrastructure requirements the lessons learned in this tutorial can be applied to other platforms.
 
 * [Prerequisites](docs/01-prerequisites.md)
 * [Installing the Client Tools](docs/02-client-tools.md)
@@ -40,8 +41,3 @@ This tutorial assumes you have access to the [Google Cloud Platform](https://clo
 * [Bootstrapping the etcd Cluster](docs/07-bootstrapping-etcd.md)
 * [Bootstrapping the Kubernetes Control Plane](docs/08-bootstrapping-kubernetes-controllers.md)
 * [Bootstrapping the Kubernetes Worker Nodes](docs/09-bootstrapping-kubernetes-workers.md)
-* [Configuring kubectl for Remote Access](docs/10-configuring-kubectl.md)
-* [Provisioning Pod Network Routes](docs/11-pod-network-routes.md)
-* [Deploying the DNS Cluster Add-on](docs/12-dns-addon.md)
-* [Smoke Test](docs/13-smoke-test.md)
-* [Cleaning Up](docs/14-cleanup.md)
